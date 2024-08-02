@@ -1,0 +1,39 @@
+{% extends "layout.html"%}
+{% block content %}
+<section class="bg-ligh " style="padding-bottom: 50px;">
+    <div class="container p-5">
+        <div class="row mb-5 ">
+            <div class="col">
+                <h3 class="text-uppercase text-center ">CLUBS</h3>
+            </div>
+        </div>
+        <div class="row">
+            {% for club in clubs %}
+            <div class="col-sm-12 col-md-6 col-lg-4 pb-5 d-flex align-items-stretch">
+                <div class="card lesson">
+                    <img src="{{url_for('static', filename=club.icon)}}" class="card-img">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <p class="text-decoration-none text-dark" href="#">{{club.name}}</p>
+                        </h5>
+                        <p class="card-text" style="color: #4F9CF9 ;"><b>We have {{ club.members }} members</b></p>
+                        <p class="card-text mb-0">
+                            <p class="card-text">{{club.club_description}}</p>
+                            <p class="text-decoration-none" href="#"><b>Club media profiles:</b></p>
+                            <p class="card-text" style="color: #4F9CF9 ;">Whats'App: <a href="" class="text-decoration-none">{{ club.whatssap }}</a></p>
+                            <p class="card-text" style="color: #4F9CF9 ;">Facebook: <a href="" class="text-decoration-none">{{ club.facebook }}</a></p>
+                            <p class="card-text" style="color: #4F9CF9 ;">Instagram: <a href="" class="text-decoration-none">{{ club.instagram }}</a></p>
+                            
+                        </p>
+                        <span><img class="article-img rounded-circle" src="{{url_for('static', filename=club.president_pic)}}" alt="" >Created By: <a
+                                href="#" class="link">{{club.president}}</a></span>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+{% endblock %}

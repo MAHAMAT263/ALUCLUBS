@@ -1,6 +1,7 @@
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
+    <script src="https://kit.fontawesome.com/a76e832906.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     {% if title %}
@@ -19,11 +20,12 @@
         <span></span>
         <span></span>
         <ul id="menu">
-            <a href="index.html"><li>About-Us</li></a>
-            <a href="#About-Us"><li>Services</li></a>
-            <a href="#OurServices"><li>Clubs</li></a>
-            <a href="sell.html"><li>Contact</li></a>
-            <a href="#infor"><li>login</li></a>
+            <a href="{{ url_for('index') }}" ><li>Home</li></a>
+            <a href="{{ url_for('about') }}#class4"><li>About-Us</li></a>
+            <a href="{{ url_for('club') }}"><li>club</li></a>
+            <a href="{{ url_for('contact') }}#infor"><li>Contact</li></a>
+            <a href="{{ url_for('signup') }}" style="background-color:#007bff; border-radius: 10px; color: white;" ><li>Signup</li></a>
+            <a href="{{ url_for('login') }}" style="background-color: #007bff; border-radius: 10px; color: white;"><li>Login</li></a>
         </ul>
     </nav>
     
@@ -43,7 +45,10 @@
   
   <script src="/static/js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </body>
 
-</body>
 </html>

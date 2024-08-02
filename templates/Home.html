@@ -1,9 +1,119 @@
 {% extends "layout.html"%}
 {% block content %}
-<div>
-<h1>Get More with Aluclubs About ALU club</h1>
+<section class="class1" id="class1">
+<div class="class1h2">
+<h2>Get More with Aluclubs About ALU club</h2>
+<p>Get all information about clubs at ALU
+    Join, React , Like , and Comment</p>
 </div>
 <div>
-    <img src="" alt="">
+    <img class="sadda" src="/static/img/Image-container.png" alt="">
 </div>
+</section>
+<section class="class2" id="class2">
+    <div class="class2h2">
+    <h2>Club Management</h2>
+    <p>Create a club profile and Manage it</p>
+        <button type="button" class="button1">Club creation</button>
+    </div>
+    <div>
+        <img class="sadda1" src="/static/img/Image-container.png" alt="">
+    </div>
+    </section>
+    <section class="class3" id="class3">
+        <div>
+            <img class="sadda2" src="/static/img/Work Together Image.png" alt="">
+        </div>
+        <div class="class3h2">
+        <h2>Together as a community</h2>
+        <p>ALUCLUBS is the best place to build a strong networking</p>
+        </div>
+        </section>
+
+        <section class="class4" id="class4">
+            <div class="class4h2">
+            <h2>Why ALUCLUBS</h2>
+            <p>Created to boost student involvement with university clubs at the African Leadership University by centralizing club information, streamlining the membership process, and encouraging social interaction.</p>
+            </div>
+            <div>
+                <img class="sadda3" src="/static/img/Image-container.png" alt="">
+            </div>
+        </section>
+        <section class="class5" id="class5">
+            <div>
+                <h2>Wherever you are  Know  What is happening
+                    at the clubs </h2>
+            </div>
+        </section>
+        <!-- Clubs -->
+        <section class="bg-dark " style="padding-bottom: 50px;">
+            <div class="container p-5">
+                <div class="row mb-5 ">
+                    <div class="col">
+                        <h3 class="text-uppercase text-center text-light">CLUBS</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for club in clubs %}
+                    <div class="col-sm-12 col-md-6 col-lg-4 pb-5 d-flex align-items-stretch">
+                        <div class="card lesson">
+                            <img src="{{url_for('static', filename=club.icon)}}" class="card-img">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">
+                                    <a class="text-decoration-none text-dark" href="#">{{club.name}}</a>
+                                </h5>
+    
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+        <section class="bg-light p-5">
+            <div class="container p-5">
+                <h3 class="text-center text-secondary">Blogs</h3>
+                <div class="row">
+                    {% for blog in blogs %}
+                    <div class="col-sm-12 col-md-6 col-lg-4 p-3 d-flex align-items-stretch">
+                        <a class="text-decoration-none w-100">
+                            <div class="card bg-light text-dark">
+                                <div class="card-body text-center">
+                                    <img src="{{ url_for('static', filename=blog.icon) }}" alt="" class="card-img w-25 rounded-circle">
+                                    <h4 class="card-title mb-4" style="color: #4F9CF9;">{{ blog.club_name }}</h4>
+                                    <h6 class="card-title mb-2">{{ blog.blog_title }}</h6>
+                                    <p class="card-text">{{ blog.blog_description }}</p>
+                                    <p class="card-text" style="color: #4F9CF9;"><b>Published on: {{ blog.publish_datetime }}</b></p>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <form action="{{ url_for('like_blog', blog_id=loop.index0) }}" method="POST">
+                                            <button type="submit" class="btn btn-primary" style="background-color: #4F9CF9;">Like</button>
+                                        </form>
+                                        <button class="btn btn-secondary" data-toggle="collapse" data-target="#comments-{{ loop.index0 }}" style="background-color: #4F9CF9;">Comment</button>
+                                    </div>
+                                    <div id="comments-{{ loop.index0 }}" class="collapse mt-3">
+                                        <form action="{{ url_for('comment_blog', blog_id=loop.index0) }}" method="POST">
+                                            <div class="form-group">
+                                                <textarea name="comment" class="form-control" rows="3" placeholder="Add a comment..."></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Submit Comment</button>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                            <ul class="list-unstyled mt-3">
+                                            {% for comment in blog.comments %}
+                                            <li class="card bg-light border py-2 p-3">{{ comment }}</li>
+                                            {% endfor %}
+                                        </ul>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
 {% endblock %}

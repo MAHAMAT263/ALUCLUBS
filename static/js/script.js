@@ -1,4 +1,3 @@
-// Get references to the elements
 const menuToggle = document.getElementById('menuToggle');
 const menu = document.getElementById('menu');
 
@@ -39,4 +38,26 @@ document.addEventListener('touchstart', (event) => {
     menuToggle.querySelector('input').checked = false;
     menuToggle.classList.remove('active');
   }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const descriptions = document.querySelectorAll('.card-text');
+    descriptions.forEach(desc => {
+        const lineHeight = parseInt(window.getComputedStyle(desc).lineHeight, 10);
+        const maxHeight = lineHeight * 5; // 5 lines
+        if (desc.scrollHeight > maxHeight) {
+            const originalText = desc.innerText;
+            let truncatedText = '';
+            const words = originalText.split(' ');
+
+            for (let i = 0; i < words.length; i++) {
+                truncatedText += words[i] + ' ';
+                desc.innerText = truncatedText.trim() + '...';
+                if (desc.scrollHeight > maxHeight) {
+                    desc.innerText = truncatedText.trim() + '...';
+                    break;
+                }
+            }
+        }
+    });
 });
